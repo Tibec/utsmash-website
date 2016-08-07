@@ -34,7 +34,11 @@
                 <div class="col-xs-12 col-sm-6 col-md-4" style="/*background:red;border:1px solid black;">
                     <div class="row ranking-container">
                         <img class="ranking-cover" src="/utsmash/assets/img/character_bg/{{ char|first }}.png">
-                        <div class="ranking-rank">{{ loop.index }}</div>
+                        <div class="ranking-rank">
+                            <div style="position: relative;
+                                top: -5px;">
+                            {{ loop.index }}</div>
+                        </div>
                         <div class="ranking-data">
                             <div class="filter"></div>
                             <div class="ranking-pseudo">{% if r.gametag != null %} {{ r.gametag }} | {% endif %}{{ r.pseudo }}</div>
