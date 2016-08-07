@@ -1,0 +1,128 @@
+{% extends "main_layout.twig" %}
+
+
+{% block body %}
+    <div class="container page2">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h2 class="page-header">Mon compte</h2>
+            <div class="col-sm-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Informations Personnelles</div>
+                    <div class="panel-body">
+                        {% if success %}
+                            <div class="alert alert-success">
+                                Vos modification ont bien été appliquées !
+                            </div>
+                        {% endif %}
+                        <div class="col-sm-4 text-center">
+                            <img class="img-circle" src="/utsmash/assets/img/avatar/{% if user.avatar %}{{ user.id}}{% else %}default{% endif %}.png" alt="Avatar" height="150" width="150">
+                        </div>
+                        <div class="col-sm-8 ">
+                            <div class='row'>
+                                <div class="col-sm-2 userdata">
+                                    <label>Nom</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    {{ userdata.firstname }}
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-sm-2 userdata">
+                                    <label>Prénom</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    {{ userdata.surname }}
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-sm-2 userdata">
+                                    <label>Tag</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    {% if userdata.gametag == "" %}<em>Aucun</em>{% else %}{{ userdata.gametag }}{% endif %}
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-sm-2 userdata">
+                                    <label>Pseudo</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    {{ userdata.pseudo }}
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-sm-2 userdata">
+                                    <label>Mail</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    {{ userdata.mail }}
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-sm-2 userdata">
+                                    <label>Tel</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    {{ userdata.phone }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-8 text-right">
+                            <a href="/utsmash/user/edit" class="btn-default btn">Modifier</a>
+                            .
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Mes tournois</div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>Tournoi</th>
+                                <th>Evenements</th>
+                                <th colspan="2">Etat</th>
+                            </tr>
+                            {% for r in registration %}
+                                <tr>
+                                    <td>{{ r.tournamentName }}</td>
+                                    <td>{% for e in r.events %}{{ e.name}}{% if not loop.last %} | {% endif %} {% endfor %}</td>
+                                    {% if date(r.date) < date() %} {# event fini#}
+                                        <td colspan="2">Terminé</td>
+                                    {% else %}
+                                        <td>A venir</td>
+                                        <td><a href="/utsmash/user/edit_registration/{{ r.regId }}">Modifier</a></td>
+                                    {% endif %}
+                                </tr>
+                            {% else %}
+                                <tr><td colspan="3" class="text-center">Vous n'avez pas encore participé a un tournoi :(</td></tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Mes classements</div>
+                    <div class="panel-body">
+                        {% for r in ranking %}
+                            <strong>
+                                <img height="20px" src="/utsmash/assets/img/game_icon/{{ r.shortname }}.png">
+                                {{ r.period }} : </strong> {{ r.rank }}
+                                {% if r.rank == 1 %}
+                                    er
+                                {% elseif r.rank == 2 %}
+                                    nd
+                                {% else %}
+                                    ème
+                                {% endif %}
+                            <br />
+                        {% else %}
+                            <p> Vous n'êtes pas classé :(<br/>Essayez de participer a un tournoi !</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

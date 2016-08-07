@@ -1,0 +1,135 @@
+{% extends "main_layout.twig" %}
+
+{% block body %}
+
+    <div class="carousel carousel-fade slide" >
+        <div class="carousel-inner">
+            <div class="item active">
+                <img class="first-slide" src="/utsmash/assets/img/tournoi/header-std.png" alt="First slide">
+            </div>
+        </div>
+    </div>
+      <div class="container">
+        <div class="col-sm-11 col-sm-offset-1">
+            <div class="page-header">
+                <h2>{{ tournament.name }}</h2>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel-default panel">
+                    <div class="panel-heading">
+                        Inscription
+                    </div>
+                    <div class="panel-body">
+                        {% if tournament.finished %}
+                            Les inscriptions pour ce tournoi sont fermées
+                        {% else %}
+                        <form class="form-horizontal" method="post">
+                            {% if error %}
+                                <div class="alert alert-danger">
+                                    {{ error|striptags }}
+                                </div>
+                            {% endif %}
+                            <h2>Informations joueur</h2>
+                            {% if user_id < 0 or userdata.ext %}
+                                {% include 'tournament/register_form_ext.twig' %}
+                            {% else %}
+                                {% include 'tournament/register_form_cas.twig' %}
+                            {% endif %}
+                            <hr>
+                            <h2>Tournoi</h2>
+                                <p>Sélectionnez au moins 1 evenement auxquel vous souhaitez participer</p>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        {% for e in tournament.events %}
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="events[]" value="{{ e.id }}" type="checkbox"> {{e.name}} ({% if e.entryFee == 0 %}Gratuit{% else %}{{ e.entryFee }} €{% endif %})
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <hr>
+                            <h2>Matériel</h2>
+                                <p>Indiquez ce que vous pouvez amener</p>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        {% for b in tournament.bringable %}
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="brings[]" value="{{ b.id }}" type="checkbox"> {{b.name}} {% if b.reduction != 0 %} (Réduction de {{ b.reduction }} €) {% endif %}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <hr>
+                            <p class="text-center">
+                                En vous inscrivant vous acceptez le <a href="{{ tournament.ruleset }}">réglement du tournoi</a>
+                            </p>
+                            <hr>
+                            <div class="text-center">
+                                <input type="submit" class="btn btn-primary" value="Valider" />
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel-default panel">
+                    <div class="panel-heading">
+                        Informations
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-sm-12 ">
+                            <div class='row'>
+                                <div class="col-sm-4 userdata">
+                                    <label>Date</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    {{ tournament.date|date('l j F Y') }}
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-sm-4 userdata">
+                                    <label>Heure</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    {{ tournament.date|date('H\\hi') }}
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-sm-4 userdata">
+                                    <label>Frais d'inscription</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    {% if tournament.venueFee == 0 %}Gratuit{% else %}{{ tournament.venueFee }} €{% endif %}
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-sm-4 userdata">
+                                    <label>Lieu</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <span id="address">{{ tournament.location }}</span>
+                                </div>
+                            </div>
+                            <iframe id="map" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        var q=encodeURIComponent($('#address').text());
+        $('#map')
+                .attr('src',
+                        'https://www.google.com/maps/embed/v1/place?key=AIzaSyAzznuZUjs9NzH_UB2jqnr_FMdOZfdZGmw&q='+q);
+    </script>
+{% endblock %}

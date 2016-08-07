@@ -1,0 +1,56 @@
+<div class='form-group'>
+    <div class=" userdata">
+        <label class="col-sm-2 control-label" for="acctype">Type de compte</label>
+    </div>
+    <div class="col-sm-8">
+        <p id="acctype" class="form-control-static">CAS</p>
+    </div>
+</div>
+<div class='form-group'>
+    <div class="userdata">
+        <label class="col-sm-2 control-label" for="firstname">Nom</label>
+    </div>
+    <div class="col-sm-8">
+        <p id="firstname" class="form-control-static">{{ userdata.firstname }}</p>
+    </div>
+</div>
+<div class='form-group'>
+    <div class="userdata">
+        <label class="col-sm-2 control-label" for="surname">Prénom</label>
+    </div>
+    <div class="col-sm-8">
+        <p id="surname" class="form-control-static">{{ userdata.surname }}</p>
+    </div>
+</div>
+<div class='form-group'>
+    <div class="userdata">
+        <label class="col-sm-2 control-label" for="gametag">Tag</label>
+    </div>
+    <div class="col-sm-8">
+        <input type="text" id="gametag" name="gametag" class="form-control" value="{{ userdata.gametag }}">
+    </div>
+</div>
+<div class='form-group'>
+    <div class="userdata">
+        <label class="col-sm-2 control-label" for="pseudo">Pseudo <span class="red">*</span></label>
+    </div>
+    <div class="col-sm-8">
+        <input type="text" id="pseudo" name="pseudo" class="form-control" value="{{ userdata.pseudo }}">
+    </div>
+</div>
+<div class='form-group'>
+    <div class="userdata">
+        <label class="col-sm-2 control-label" for="mail">Mail</label>
+    </div>
+    <div class="col-sm-8">
+        <p id="mail" class="form-control-static">{{ userdata.mail }}</p>
+    </div>
+</div>
+<div class='form-group'>
+    <div class="userdata">
+        <label class="col-sm-2 control-label" for="phone">Tel</label>
+    </div>
+    <div class="col-sm-8">
+        <input type="text" id="phone" name="phone" class="form-control" value="{{ userdata.phone }}">
+    </div>
+</div>

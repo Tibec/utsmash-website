@@ -1,0 +1,31 @@
+<div class="form-group">
+    <label for="firstname" class="col-sm-3 control-label">Nom</label>
+    <div class="col-sm-9">
+        <p class="form-control-static">{{ userdata.firstname }}</p>
+    </div>
+</div>
+<div class="form-group">
+    <label for="surname" class="col-sm-3 control-label">Prénom</label>
+    <div class="col-sm-9">
+        <p class="form-control-static">{{ userdata.surname }}</p>
+    </div>
+</div>
+<div class="form-group">
+    <label for="surname" class="col-sm-3 control-label">Mail</label>
+    <div class="col-sm-9">
+        <p class="form-control-static">{{ userdata.mail }}</p>
+    </div>
+</div>
+<div class="form-group">
+    <label for="pseudo" class="col-sm-3 control-label">Pseudo <span class="red">*</span></label>
+    <div class="col-sm-9">
+        <input type="text" class="form-control" value="{{ userdata.pseudo }}" id="pseudo" name="pseudo" placeholder="Pseudo">
+    </div>
+</div>
+<div class="form-group">
+    <label for="phone" class="col-sm-3 control-label">Tel</label>
+    <div class="col-sm-9">
+        <input type="text" class="form-control" value="{{ userdata.phone }}" name="phone" id="phone" placeholder="Tel">
+    </div>
+    <span class="help-block text-center"> Obligatoire uniquement si vous amenez du matériel </span>
+</div>

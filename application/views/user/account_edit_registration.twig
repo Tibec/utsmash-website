@@ -1,0 +1,79 @@
+{% extends "main_layout.twig" %}
+
+
+{% block body %}
+    <div class="container page2">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h2 class="page-header">Mon compte</h2>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Participation au tournoi <strong>{{ registration.tournamentName }}</strong>
+                        <div class="btn-delete">
+                            <a href="/utsmash/user/delete_registration/{{ registration.regId }}" class="btn-danger btn-xs btn">Supprimer</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-sm-12">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">
+                                {% if err or err_file %}
+                                    <div class="alert alert-danger">
+                                        {{ err|striptags }}
+                                        {% if err and err_file %}<br>{% endif %}
+                                        {{ err_file.error|striptags }}
+                                    </div>
+                                {% endif %}
+                                <h2>Tournoi</h2>
+                                <p>Sélectionnez au moins 1 evenement auxquel vous souhaitez participer</p>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        {% for e in tournament.events %}
+                                            {% set registred = false %}
+                                            {% for bb in registration.events %}
+                                                {% if bb.id == e.id %}
+                                                    {% set registred=true %}
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="events[]" {% if registred %} checked="checked" {% endif %} value="{{ e.id }}" type="checkbox"> {{e.name}} ({% if e.entryFee == 0 %}Gratuit{% else %}{{ e.entryFee }} €{% endif %})
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <hr>
+                                <h2>Matériel</h2>
+                                <p>Indiquez ce que vous pouvez amener</p>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        {% for b in tournament.bringable %}
+                                            {% set bringed = false %}
+                                                {% for bb in registration.brings %}
+                                                    {% if bb.id == b.id %}
+                                                        {% set bringed=true %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="brings[]" {% if bringed %} checked="checked" {% endif %} value="{{ b.id }}" type="checkbox"> {{b.name}} {% if b.reduction != 0 %} (Réduction de {{ b.reduction }} €) {% endif %}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <a href="/utsmash/user" class="btn-default btn">Retour</a>
+                                    <input type="submit" class="btn-primary btn" value="Appliquer" />
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+{% endblock %}

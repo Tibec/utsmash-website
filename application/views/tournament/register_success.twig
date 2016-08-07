@@ -1,0 +1,32 @@
+{% extends "main_layout.twig" %}
+
+{% block body %}
+
+    <div class="carousel carousel-fade slide" >
+        <div class="carousel-inner">
+            <div class="item active">
+                <img class="first-slide" src="/utsmash/assets/img/tournoi/header-std.png" alt="First slide">
+            </div>
+        </div>
+    </div>
+      <div class="container">
+        <div class="col-sm-11 col-sm-offset-1">
+            <div class="page-header">
+                <h2>{{ tournament.name }}</h2>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel-default panel">
+                    <div class="panel-heading">
+                        Inscription
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-success">
+                            Votre inscription a bien était enregistré ! <br />
+                            Vous allez recevoir sous peu un mail de confirmation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

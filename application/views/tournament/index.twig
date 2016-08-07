@@ -1,0 +1,112 @@
+{% extends "main_layout.twig" %}
+
+{% block body %}
+    {% for t in past %}
+        <div class="modal fade" id="tournament-{{ t.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ t.name }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <center>Logo</center>
+                        Evenements:
+                        <ul>
+                            {% for e in t.events %}
+                                <li>
+                                    <strong>{{ e.name }}</strong>
+                                    <a class="btn btn-xs btn-primary"
+                                    {% if e.bracket == "" %} disabled="disabled" {% else %}
+                                    href="{{ e.bracket }}" {% endif %}>
+                                        Résultats
+                                    </a>
+                                    <a class="btn btn-xs btn-primary"
+                                            {% if e.vod == "" %} disabled="disabled" {% else %}
+                                        href="{{ e.vod }}" {% endif %}>
+                                        Replay
+                                    </a>
+                                    <a class="btn btn-xs btn-primary"
+                                            {% if e.picture == "" %} disabled="disabled" {% else %}
+                                        href="{{ e.picture  }}" {% endif %}>
+                                        Photos
+                                    </a>
+                                </li>
+                                {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% for t in upcoming %}
+        <div class="modal fade" id="tournament-{{ t.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ t.name }}</h4>
+                </div>
+                <div class="modal-body">
+                    <center><img src="/{{ t.picture }}"></center>
+                    Evenement prévus:
+                    <ul>
+                        {% for e in t.events %}
+                            <li> {{ e.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-success"  href="/utsmash/tournament/show/{{ t.id }}">Détails</a>
+                    <a class="btn btn-primary"  href="/utsmash/tournament/register/{{ t.id }}">Inscription</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+    <div class="container page2">
+        <div class="col-sm-10 col-sm-offset-1">
+        <div class="row">
+            <h2 class="page-header">
+                Tournois à venir
+            </h2>
+            {% for t in upcoming %}
+                <div class="col-lg-4">
+                    <div class="affiche-tournoi" data-toggle="modal" data-target="#tournament-{{ t.id }}">
+                        <img src="/utsmash/assets/img/tournoi/affiche-{{ t.picture }}.png"/>
+                        <div class="tournament-description">
+                            <h4>{{ t.name }}</h4>
+                            <div></div>
+                        </div>
+
+                    </div>
+                </div><!-- /.col-lg-4 -->
+            {% else %}
+                <p class="text-center">Aucun tournoi n'est prochainement prévu :(</p>
+            {% endfor %}
+        </div><!-- /.row -->
+        <div class="row">
+            <h2 class="page-header">
+                Anciens tournois
+            </h2>
+            {% for t in past %}
+                <div class="col-lg-4">
+                    <div class="affiche-tournoi" data-toggle="modal" data-target="#tournament-{{ t.id }}">
+                        <img src="/utsmash/assets/img/tournoi/affiche-{{ t.picture }}.png"/>
+                        <div class="tournament-description">
+                            <h4>{{ t.name }}</h4>
+                            <div></div>
+                        </div>
+                    </div>
+                </div><!-- /.col-lg-4 -->
+            {% else %}
+                <p>Il n'y a aucune ancien tournoi :^)</p>
+            {% endfor %}
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+    </div>
+
+{% endblock %}

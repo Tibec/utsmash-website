@@ -1,0 +1,62 @@
+<div class="navbar-wrapper">
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/utsmash">
+                        <img src="/utsmash/assets/img/logo.png" alt="UT'Smash" />
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li {% if current_url == 'hello/information'%}class="active"{% endif %} ><a href="/utsmash/about">Informations</a></li>
+                        <li {% if current_url == 'hello/contact'%}class="active"{% endif %} ><a href="/utsmash/contact">Contact</a></li>
+                        <li class="dropdown {% if 'tournament' in current_url %}active"{% endif %}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tournois <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {% for t in upcoming_nav %}
+                                    <li ><a href="/utsmash/tournament/show/{{ t.id }}">{{ t.name }}</a></li>
+                                {% else %}
+                                    <li  class="disabled"><a href="#">Aucun tournoi à venir</a></li>
+                                {% endfor %}
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/utsmash/tournament">Archives</a></li>
+                            </ul>
+                        </li>
+                        <li {% if 'blog' in current_url %}class="active"{% endif %} ><a href="/utsmash/blog">Blog</a></li>
+                        <li {% if 'ranking' in current_url %}class="active"{% endif %} ><a href="/utsmash/ranking">Ranking</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user_id <= 0 %}
+                            <li {% if 'user/login' in current_url %}class="active"{% endif %}>
+                                <a href="/utsmash/user/login">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                    Connexion
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="dropdown {% if 'user' in current_url %}active{% endif %}">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img class="img-circle avatar" src="/utsmash/assets/img/avatar/{% if user.avatar %}{{ user.id}}{% else %}default{% endif %}.png" alt="Avatar" height="35" width="35">
+                                    {{ user.pseudo }}
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/utsmash/user">Mon compte</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="/utsmash/user/logout">Déconnexion</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

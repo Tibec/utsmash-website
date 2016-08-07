@@ -1,0 +1,56 @@
+{% extends "main_layout.twig" %}
+
+
+{% block body %}
+    <div class="container page2">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h2 class="page-header">Mon compte</h2>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Informations Personnelles</div>
+                    <div class="panel-body">
+                        <div class="col-sm-12">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">
+                                {% if err or err_file %}
+                                    <div class="alert alert-danger">
+                                        {{ err|striptags }}
+                                        {% if err and err_file %}<br>{% endif %}
+                                        {{ err_file.error|striptags }}
+                                    </div>
+                                {% endif %}
+                                <h2>Information personnels</h2>
+                                <hr>
+                                {% if userdata.ext %}
+                                    {% include "user/account_edit_ext.twig" %}
+                                {% else %}
+                                    {% include "user/account_edit_cas.twig" %}
+                                {% endif %}
+                                <h2>Autres</h2>
+                                <hr>
+                                <div class="text-center">
+                                    <img class="img-circle" src="/utsmash/assets/img/avatar/{% if user.avatar %}{{ user.id}}{% else %}default{% endif %}.png" alt="Avatar" height="150" width="150">
+                                    <div class='form-group'>
+                                        <div class="userdata">
+                                            <label class="col-sm-2 control-label" for="file">Fichier</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="file" id="file" name="file">
+                                            <p class="help-block">Format png/gif/jpg uniquement. Résolution 500x500 max. Taille max: 2 Mo</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class=" text-center">
+                                    <a href="/utsmash/user" class="btn-default btn">Retour</a>
+                                    <input type="submit" class="btn-primary btn" value="Appliquer" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+{% endblock %}

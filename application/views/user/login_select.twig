@@ -1,0 +1,40 @@
+{% extends "main_layout.twig" %}
+
+
+{% block body %}
+    <div class="container page2">
+        <div class="panel panel-default">
+            <div class="panel-heading">Connexion</div>
+            <div class="panel-body">
+                <div class="col-sm-6">
+                    <h2>Déjà inscrit ?</h2>
+                    <ul class="link-login">
+                        <li>
+                            <a href="/utsmash/user/login_cas" class="btn btn-default">
+                                Etudiants UTC/ESCOM (CAS)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/utsmash/user/login_ext" class="btn btn-default">
+                                Extérieurs
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {% if fake %}
+                    <div class="col-sm-6">
+                        <h2>Premier tournoi ?</h2>
+                        <ul class="link-login">
+                            <li>
+                                <a href="/utsmash/user/login/fake" class="btn btn-default">
+                                    Premier passage
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

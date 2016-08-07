@@ -1,0 +1,55 @@
+{% extends "main_layout.twig" %}
+
+{% block body %}
+    <div class="container page2">
+    <div class="col-lg-10 col-lg-offset-1">
+        <h2 class="page-header">Ranking</h2>
+        <div class="panel panel-default panel-black">
+            <form class="navbar-form ranking-search" role="search" method="POST" action="">
+                <div class="form-group">
+                    <label for="period">Semestre : </label>
+                    <select name="period" id="period" class="form-control">
+                        <option value="P16" {% if period == 'P16' %} selected="selected"{% endif %}>Semestre P16</option>
+                        <option value="A15" {% if period == 'A15' %} selected="selected"{% endif %}>Semestre A15</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="game">Jeu : </label>
+                    <select name="game" id="game" class="form-control">
+                        {% for g in gamelist %}
+                            <option value="{{ g.shortname }}" {% if game == g.shortname %} selected="selected"{% endif %}>{{g.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="ext" id="includeExt" {% if ext %} checked="checked"{% endif %}> Inclure les extérieurs
+                    </label>
+                </div>
+                <button type="submit" class="text-left btn btn-default">Valider</button>
+            </form>
+        </div>
+    </div>
+    <div class="row ranking">
+        {% for r in ranking %}
+            {% set char = r.characters|split('|') %}
+            <div class="ranking-container">
+                <img class="ranking-cover" src="/utsmash/assets/img/character_bg/{{ char|first }}.png">
+                <div class="ranking-rank">{{ loop.index }}</div>
+                <div class="ranking-data">
+                    <div class="filter"></div>
+                    <div class="ranking-pseudo">{% if r.gametag != null %} {{ r.gametag }} | {% endif %}{{ r.pseudo }}</div>
+                    <div class="ranking-name">{{ r.surname|first}}. {{ r.firstname }}</div>
+                </div>
+                <div class="ranking-alt">
+                    <ul>
+                        {% for i in 1..char|length %}
+                            <li><img src="/utsmash/assets/img/character_icon/{{ char[i-1] }}.png" alt="{{ char['i'] }}"></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
