@@ -10,7 +10,7 @@
                         <h4 class="modal-title" id="myModalLabel">{{ t.name }}</h4>
                     </div>
                     <div class="modal-body">
-                        <center>Logo</center>
+                        <center><img height="70" src="/utsmash/assets/img/tournoi/header-{{ t.picture }}.png"></center>
                         Evenements:
                         <ul>
                             {% for e in t.events %}
@@ -51,7 +51,7 @@
                     <h4 class="modal-title" id="myModalLabel">{{ t.name }}</h4>
                 </div>
                 <div class="modal-body">
-                    <center><img src="/{{ t.picture }}"></center>
+                    <center><img height="70" src="/utsmash/assets/img/tournoi/header-{{ t.picture }}.png"></center>
                     Evenement prévus:
                     <ul>
                         {% for e in t.events %}
@@ -68,7 +68,7 @@
         </div>
     {% endfor %}
     <div class="container page2">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-lg-10 col-lg-offset-1">
         <div class="row">
             <h2 class="page-header">
                 Tournois à venir
@@ -85,7 +85,7 @@
                     </div>
                 </div><!-- /.col-lg-4 -->
             {% else %}
-                <p class="text-center">Aucun tournoi n'est prochainement prévu :(</p>
+                <p class="text-center white">Aucun tournoi n'est prochainement prévu :(</p>
             {% endfor %}
         </div><!-- /.row -->
         <div class="row">
@@ -103,7 +103,7 @@
                     </div>
                 </div><!-- /.col-lg-4 -->
             {% else %}
-                <p>Il n'y a aucune ancien tournoi :^)</p>
+                <p class="text-center white">Il n'y a aucune ancien tournoi :^)</p>
             {% endfor %}
         </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->

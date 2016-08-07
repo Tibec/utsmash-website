@@ -5,18 +5,23 @@
     <div class="carousel carousel-fade slide" >
         <div class="carousel-inner">
             <div class="item active">
-                <img class="first-slide" src="/utsmash/assets/img/tournoi/header-std.png" alt="First slide">
+                <img class="first-slide" src="/utsmash/assets/img/tournoi/header-{{ tournament.picture }}.png" alt="First slide">
             </div>
         </div>
     </div>
       <div class="container">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-lg-10 col-lg-offset-1">
             <div class="page-header">
                 <h2>{{ tournament.name }}</h2>
+                <div class="text-right">
+                    <a class="btn btn-lg btn-default" href="/utsmash/tournament/">
+                        S'inscrire
+                    </a>
+                </div>
                 {% if not tournament.finished %}
                     <div class="text-right">
                         <a class="btn btn-lg btn-primary" href="/utsmash/tournament/register/{{ tournament.id }}">
-                            S'inscrire
+                            Retour
                         </a>
                     </div>
                 {% endif %}

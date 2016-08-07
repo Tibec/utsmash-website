@@ -6,32 +6,42 @@
 
 <div class="container page">
     <!-- Three columns of text below the carousel -->
-    <div class="row">
-        <div class="col-lg-4">
-            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dernière actu</div>
-                <div clas="panel-body">
-                    <div class="col-xs-12">
-                        <h3>{{ news.title }}</h3>
-                        <p>{{ news.content|slice(0, 40) }} ...</p>
-                        <a class="text-right btn btn-default" href="/utsmash/blog">Voir plus >></a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+    <div class="">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="col-lg-8">
+            <h2 class="page-header">Bienvenue</h2>
+                <div class="col-md-6 white">
+                    <p class="text-center">
+                        <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    </p>
+                    <h2>Présentation</h2>
+                    <p>L'association UT'Smash est une association qui a pour but de rassembler les joueurs de Smash Bros.
+                        en organisant des sessions hebdomadaires ainsi que plusieurs tournois au long du semestre.</p>
+                    <p class="text-right"><a class="btn btn-default" href="/utsmash/about" role="button">En savoir plus &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-md-6 white">
+                    <p class="text-center">
+                        <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    </p>
+                    <h2>Les tournois</h2>
+                    <p>Nous organisons 2 à 3 fois par semestre des tournoi. Le contenu ainsi que les dates sont communiqués en général
+                        sur la mailing list ainsi que sur le groupe facebook. Ils sont en général annoncés 2 semaines à l'avance. Les inscriptions se déroulent sur le site.</p>
+                    <p class="text-right"><a class="btn btn-default" href="/utsmash/tournament" role="button">Voir la liste &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
             </div>
-        </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4 col-md-12">
+                <div class="panel panel-default block-news">
+                    <div class="panel-heading">Dernières actus</div>
+                    <div class="panel-body">
+                        <h3 class="title-no-padding">{{ news.title }}</h3>
+                        <p>{{ news.content|slice(0, 80)|striptags }} [...]</p>
+                        <div class="text-right">
+                            <a class="btn btn-default" href="/utsmash/blog">Plus &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-lg-4 -->
+        </div>
     </div><!-- /.row -->
 </div>
 

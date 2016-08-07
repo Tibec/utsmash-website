@@ -221,6 +221,18 @@
 	padding-top: 70px;
 }
 
+.white  {
+    color:white;
+}
+
+.block-news  {
+    margin-top:80px;
+}
+
+.title-no-padding {
+    margin-top: 0;
+}
+
 .melee-singles {
 	background: url('/utsmash/assets/img/tournoi/event-melee-singles.png') center;
 }
