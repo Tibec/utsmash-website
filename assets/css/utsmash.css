@@ -115,39 +115,6 @@
 	 color: #FFF;
 	 padding: 50px 50px;
  }
-@media (min-width: 768px) {
-	.ranking {
-		padding-left:18%;
-	}
-}
-@media (max-width: 768px) {
-	.ranking {
-		padding-left:7%;
-	}
-}
-@media (min-width: 992px) {
-	.ranking {
-		padding-left:19%;
-	}
-}
-@media (min-width: 1200px) {
-	.ranking {
-		padding-left:10%;
-	}
-}
-@media (min-width: 1200px) {
-	.ranking-search .form-group {
-		margin-right: 5.5%;
-	}
-
-}
-
-@media (min-width: 992px) {
-	.ranking-search .form-group {
-		margin-right: 5%;
-	}
-
-}
 
 .ranking-container img.ranking-cover {
 	height: 160px;
@@ -170,8 +137,8 @@
 	padding:5px;
 	height: 160px;
 	width: 300px;
-	margin-top: 30px;
-	margin-right: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 	float:left;
 	position:relative;
 	z-index:0;

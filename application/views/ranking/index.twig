@@ -29,26 +29,26 @@
                 <button type="submit" class="text-left btn btn-default">Valider</button>
             </form>
         </div>
-    </div>
-    <div class="row ranking">
         {% for r in ranking %}
             {% set char = r.characters|split('|') %}
-            <div class="ranking-container">
-                <img class="ranking-cover" src="/utsmash/assets/img/character_bg/{{ char|first }}.png">
-                <div class="ranking-rank">{{ loop.index }}</div>
-                <div class="ranking-data">
-                    <div class="filter"></div>
-                    <div class="ranking-pseudo">{% if r.gametag != null %} {{ r.gametag }} | {% endif %}{{ r.pseudo }}</div>
-                    <div class="ranking-name">{{ r.surname|first}}. {{ r.firstname }}</div>
+                <div class="col-xs-12 col-sm-6 col-md-4" style="/*background:red;border:1px solid black;">
+                    <div class="row ranking-container">
+                        <img class="ranking-cover" src="/utsmash/assets/img/character_bg/{{ char|first }}.png">
+                        <div class="ranking-rank">{{ loop.index }}</div>
+                        <div class="ranking-data">
+                            <div class="filter"></div>
+                            <div class="ranking-pseudo">{% if r.gametag != null %} {{ r.gametag }} | {% endif %}{{ r.pseudo }}</div>
+                            <div class="ranking-name">{{ r.surname|first}}. {{ r.firstname }}</div>
+                        </div>
+                        <div class="ranking-alt">
+                            <ul>
+                                {% for i in 1..char|length %}
+                                    <li><img src="/utsmash/assets/img/character_icon/{{ char[i-1] }}.png" alt="{{ char['i'] }}"></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="ranking-alt">
-                    <ul>
-                        {% for i in 1..char|length %}
-                            <li><img src="/utsmash/assets/img/character_icon/{{ char[i-1] }}.png" alt="{{ char['i'] }}"></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
         {% endfor %}
     </div>
 </div>
